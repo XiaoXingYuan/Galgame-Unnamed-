@@ -1,13 +1,10 @@
 image hospital = "images/bg/hospital.png"
 
-
 define p = Character('玩家', color="#c8ffc8")
 define a = Character('未知聲音A', color="#c8ffc8")
 define karin = Character('橘 花凜', color="#c8ffc8", image="karin")
 
-
 label start:
-
     p "嗯...這是哪..."
     p "啊,頭好痛，我這是怎麼了？"
     p "咦..？我這是..在醫院！？？為什麼？？究竟.."
@@ -21,8 +18,8 @@ label start:
     a "對了！該去叫醫生的，要等花凜喲~"
     p "唉..等等，我聽到了什麼？？！？"
     p "啊這.."
-    p "我？？？我這是跟人來了一發之後第二醒來失憶了？？"
-    p "頭這麼痛是撞了嗎，還是我玩什麼激烈的play了嗎？"
+    p "我？？？我這是跟人來了一發之後第二天醒來失憶了？？"
+    p "頭這麼痛是撞了嗎？還是我玩什麼激烈的play了嗎？"
     p "可惡我怎沒有記憶？？"
     p "不對，女朋友？"
     p "我有女朋友了？我女朋友誰？"
@@ -37,5 +34,48 @@ label start:
     p "這不就打*打太嗨打到失憶，噢，還是個出軌渣男.."
     p "所以，現在為了男人的尊嚴，我不能讓人發現我打*打到失憶了，還要隱瞞我出軌的情況下找到我女朋友是誰..."
     p "聽着就好難..."
+    "那麼現在我該幹嘛？"
+    "總之先調查一下周圍。"
 
+    #起床
+
+    menu:
+        "想要調查什麼呢"
+        "查看床頭":
+            $ known_pw = False
+            jump search_sidetable
     return
+
+
+label search_sidetable:
+    #看向床頭櫃
+    menu:
+        "查看手機":
+            if known_pw:
+                p "唉，要密碼..."
+                p "試什麼好？我生日？"
+                "噠噠噠"
+                "手機解銷了。"
+                "啊，成功了。"
+                jump search_phone
+            else:
+                p "唉,不知道密碼。"
+                p "先調查其他東西好了。"
+                jump search_sidetable
+        "查看錢包":
+            "唉，果然有身份證。"
+            "名字是XXX，出生XX年XX月XX日。"
+            "唉，只有幾張100塊在裏面。"
+            $ known_pw = True
+            jump search_sidetable
+
+
+label search_phone:
+    menu:
+        "由於劇情需要,現在只能選一樣。"
+        "調查相册":
+            pass
+        "調查備忘錄":
+            pass
+        "調查手機聯絡人":
+            pass
