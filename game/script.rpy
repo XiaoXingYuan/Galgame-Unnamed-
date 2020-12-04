@@ -55,7 +55,7 @@ label search_sidetable:
                 p "唉，要密碼..."
                 p "試什麼好？我生日？"
                 "噠噠噠"
-                "手機解銷了。"
+                "手機解鎖了。"
                 "啊，成功了。"
                 jump search_phone
             else:
@@ -74,8 +74,94 @@ label search_phone:
     menu:
         "由於劇情需要,現在只能選一樣。"
         "調查相册":
-            pass
+            $ searched_photo1 = False
+            $ searched_photo2 = False
+            $ searched_photo3 = False
+            $ searched_photo4 = False
+            jump search_photo
         "調查備忘錄":
             pass
         "調查手機聯絡人":
             pass
+
+label search_photo:
+    menu:
+        "查看相冊一":
+            if not searched_photo1:
+                $ searched_photo1 = True
+                p "咦？"
+                p "全部相片内都有兩個人，其中一個是剛剛的那個女孩。"
+                menu:
+                    "是否繼續查看照片的詳情？"
+                    "是":
+                        p "有很多我和她的合照"
+                        p "我們關係看起來很親密"
+                        p "這究竟是怎麽一回事？我跟她看起來簡直就像是男女朋友的關係，那昨晚究竟是怎麽一回事？？"
+                        jump out_hospital
+                    "否":
+                        jump search_photo
+            else:
+                "已查閲該相冊"
+                jump search_photo
+        "查看相冊二":
+            if not searched_photo2:
+                $ searched_photo2 = True
+                p "咦？是很多兩個人的合照呢"
+                p "其中那個金髮女孩是誰呢？沒有印象"
+                menu:
+                    "是否繼續查看照片的詳情？"
+                    "是":
+                        p "有好幾張也是我和她在抱在一起的合照"
+                        p "難道我們的關係是...？"
+                        jump out_hospital
+                    "否":
+                        jump search_photo
+            else:
+                "已查閲該相冊"
+                jump search_photo
+        "查看相冊三":
+            if not searched_photo3:
+                $ searched_photo3 = True
+                p "咦？這個相冊有很多類似收據的物體"
+                p "還有好幾張黑長直女性的照片"
+                menu:
+                    "是否繼續查看照片的詳情？"
+                    "是":
+                        p "仔細一看，原來那不是收據"
+                        p "類似是告假紙"
+                        p "但請假原因看得不是很清楚呢"
+                        jump out_hospital
+                    "否":
+                        jump search_photo
+            else:
+                "已查閲該相冊"
+                jump search_photo
+        "查看相冊四":
+            if not searched_photo4:
+                $ searched_photo4 = True
+                p "幾乎全部都是一個茶髮女孩的相片"
+                p "當中也有幾張我和她的合照"
+                menu:
+                    "是否繼續查看照片的詳情？"
+                    "是":
+                        p "真的很多這個茶髮女孩笑顔的相片欸"
+                        p "數量多的有點離譜欸"
+                        p "難道她是我的女朋友？"
+                        jump out_hospital
+                    "否":
+                        jump search_photo
+            else:
+                "已查閲該相冊"
+                jump search_photo
+
+
+label out_hospital:
+    pass
+
+#label contin_search_photo:
+#    menu:
+#        "是否繼續查看相冊？"
+#        "是":
+#            jump search_photo
+#        "否":
+#            jump
