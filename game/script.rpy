@@ -47,7 +47,7 @@ label start:
     return
 
 
-label search_sidetable:
+label search_sidetable: #查看床頭櫃
     #看向床頭櫃
     menu:
         "查看手機":
@@ -70,7 +70,7 @@ label search_sidetable:
             jump search_sidetable
 
 
-label search_phone:
+label search_phone: #查看手機
     menu:
         "由於劇情需要,現在只能選一樣。"
         "調查相册":
@@ -80,11 +80,11 @@ label search_phone:
             $ searched_photo4 = False
             jump search_photo
         "調查備忘錄":
-            pass
+            jump search_memo
         "調查手機聯絡人":
-            pass
+            jump search_contact
 
-label search_photo:
+label search_photo:#查看相冊
     menu:
         "查看相冊一":
             if not searched_photo1:
@@ -154,14 +154,53 @@ label search_photo:
                 "已查閲該相冊"
                 jump search_photo
 
+label search_memo: #查看備忘錄
+    menu:
+        "備忘錄一":
+            "“日記：X年X月X日”"
+            "“今天因爲她的事情和父母吵了架”"
+            "“真是糟糕透了”"
+            "“...”"
+            "“所以我做了一個決定，離家出走”"
+            p "啊這..."
+            p "這究竟發生了什麽事？"
+            p "爲什麽我完全沒有印象？"
+            p "“她”又是誰？"
+        "備忘錄二":
+            "“記得吃藥”"
+            "“每日晚飯後兩顆”"
+            p "藥？什麽藥？"
+            p "爲什麽要吃藥？"
+            p "難道是之前感冒了？"
+        "備忘錄三":
+            "X年X月X日"
+            "她回國了，記得去接機"
+            p "“她”是誰？"
+            p "爲何要專程接機？"
+            p "難道她就是我的..."
+    jump out_hospital
 
-label out_hospital:
+label search_contact: #查看聯絡人
+    "咦，只有6個人，好少"
+    "分別是父母、紗奈？紬？花凜？藤井？"
+    "有四個不知道是誰呢。"
+    menu:
+        "查看哪個聯絡人好呢？"
+        "紬":
+            "“備註:出國未歸大小姐”"
+            p "出國未歸？大小姐？？"
+            p "誰？？"
+        "花凜":
+            p "咦,是剛才那個女孩"
+            p "再看看備註"
+            p "？是空的"
+        "藤井":
+            "“備註:醫生小姐”"
+            P "嗯?醫生??"
+        "紗奈":
+            "“備註:我可愛的妹妹”"
+            p "妹妹...糟了怎麼沒什麼印像"
+    jump out_hospital
+
+label out_hospital: #出院
     pass
-
-#label contin_search_photo:
-#    menu:
-#        "是否繼續查看相冊？"
-#        "是":
-#            jump search_photo
-#        "否":
-#            jump
